@@ -36,21 +36,13 @@ class App extends Component {
     }, 1000);
   }
 
-  _handleKeyDown = (e) => {
-    if (e.key === 'Enter'){
-      const messageData = {
-        username: e.target.parentNode.firstChild.value,
-        content: e.target.value
-      }
-      //console.log(`${messageData.user} says "${messageData.message}"`);
-      const newIM = Message(messageData);
-      console.log(newIM.props)
-      const messages = this.state.messages.concat(newIM)
-      // Update the state of the app component.
-      this.setState({ messages: messages, loading: false})
-      e.target.value = '';
-      
-    }
+  sendMessage = (messageData) => {
+    const newIM = Message(messageData);
+    const messages = this.state.messages.concat(newIM);
+    this.setState({
+      messages: messages,
+      loading: false
+    })
   }
 
   render() {
@@ -58,7 +50,7 @@ class App extends Component {
       <div>
         <Navbar />
         <MessageList messages={this.state.messages} loading={this.state.loading} />
-        <Chatbar currentUser={this.state.currentUser} keydown={this._handleKeyDown}/>
+        <Chatbar currentUser={this.state.currentUser} sendMessage={this.sendMessage}/>
       </div>
     );
   }
