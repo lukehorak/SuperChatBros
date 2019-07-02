@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import Message from './Message.jsx';
-import SystemMessage from './SystemMessage.jsx'
 
 class MessageList extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { loading: true };
+  }
+
   render() {
+    // Resolve loading time
+    const messages = (this.props.loading ? <h1>loading...</h1> : this.props.messages);
     return (
       <main className="messages">
-        <SystemMessage />
-        <Message />
+        {messages}
       </main>
     );
   }

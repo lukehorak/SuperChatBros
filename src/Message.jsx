@@ -1,15 +1,20 @@
-import React, { Component } from 'react';
-
-class Message extends Component {
-  render() {
-    return (
-      <div className="message">
-        <span className="message-username">Pikachu</span>
-        <span className="message-content">*Spams Thunder*</span>
-      </div>
-    );
-  }
+import React from 'react';
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Private Methods
+///////////////////////////////////////////////////////////////////////////////////////////////////
+const randomKeyGen = () => {
+  return Math.random().toString()
 }
-export default Message;
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Component Function Export
+///////////////////////////////////////////////////////////////////////////////////////////////////
+module.exports = function Message(msgObj) {
+  const { username, content } = msgObj;
+  return (
+    <div className="message" key={randomKeyGen()}>
+        <span className="message-username">{username}</span>
+        <span className="message-content">{content}</span>
+    </div>
+  )
+}
 
