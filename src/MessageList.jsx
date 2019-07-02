@@ -6,8 +6,8 @@ class MessageList extends Component {
   render() {
     return (
       <main className="messages">
-        <Message />
         <SystemMessage />
+        <Message />
       </main>
     );
   }
