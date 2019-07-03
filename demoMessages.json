@@ -1,6 +1,6 @@
 [
-  {"username": "Anonymous1", "content": "changed their name to Pikachu!", "system": "true"},
-  { "username": "Pikachu", "content": "*Spams Thunder*" },
-  { "username": "Link", "content": "HYAAAAAA" },
-  { "username": "Kirby", "content": "Om nom nom!" }
+  {"username": "Anonymous1", "content": "changed their name to Pikachu!", "system": "true", "id": "13aa9c97-9531-466c-b359-df1048d76ad9"},
+  { "username": "Pikachu", "content": "*Spams Thunder*", "id": "4eb1ad7c-0acf-4a76-af32-014b90a6b28e" },
+  { "username": "Link", "content": "HYAAAAAA", "id": "9e0c129a-ec2f-4705-afa6-3b4e89eb0334" },
+  { "username": "Kirby", "content": "Om nom nom!", "id": "324b1544-d05d-4ec2-a563-a024d7f78ac4" }
 ]
