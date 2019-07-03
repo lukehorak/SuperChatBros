@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon }  from '@fortawesome/react-fontawesome'
-import { faComment }        from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faComment } from '@fortawesome/free-solid-svg-icons'
+
+const characters = ['Mario', 'Luigi', 'Yoshi', 'Kirby', 'Fox', 'Link', 'Samus', 'Ness', 'Donkey Kong', 'Pikachu', 'Jigglypuff', 'Captain Falcon', ]
+
+function Options(charList){
+  const componentList = [];
+  charList.forEach(char => {
+    componentList.push(<option key={char} value={char}>{char}</option>)
+  })
+  return componentList;
+}
 
 class Chatbar extends Component {
 
@@ -16,9 +26,14 @@ class Chatbar extends Component {
     return (
       <footer className="chatbar" >
         <form onSubmit={this._handleSubmit}>
-          <input name="username" className="chatbar-username" placeholder="Your Name (Optional)" defaultValue={this.props.currentUser}/>
+          <fieldset >
+            <select name="username" id="character" className="chatbar-username">
+              {Options(characters)}
+            </select>
+          </fieldset>
+
           <input name="content" className="chatbar-message" placeholder="Type a message and hit ENTER" />
-          <button><FontAwesomeIcon icon={faComment}/></button>
+          <button><FontAwesomeIcon icon={faComment} /></button>
         </form>
       </footer>
     );
