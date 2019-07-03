@@ -16,7 +16,6 @@ class App extends Component {
     super(props);
     this.state = {
       currentUser: 'Lvl 1 CPU',
-      loading: true,
       connected: true,
       messages: []
     }
