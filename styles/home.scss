@@ -92,6 +92,8 @@ body {
   height: $navHeight;
   left: 0;
   padding: 0 10px;
+  display: flex;
+  justify-content: center;
   position: fixed;
   right: 0;
   top: 0;
@@ -99,15 +101,12 @@ body {
 
 .navbar-brand {
   color: inherit;
-  display: block;
-  float: left;
   font-weight: 700;
-  margin-left: 1em;
   font-size: 28px;
-  height: 100%;
   line-height: 60px;
-  padding: 0 10px;
   text-decoration: none;
+  display: flex;
+  justify-content: center;
 }
 
 .navbar-image {
