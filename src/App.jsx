@@ -42,13 +42,13 @@ class App extends Component {
       const demoMessage = { username:'Cpt. Falcon', content:'falconnnnnnn CHAT!', id: '1c7f2ba0-544c-4073-9cbb-5a6a1791acd6' }
       this.socket.send(JSON.stringify(demoMessage))
       this.setState({connected: true})
-
     }
 
     this.socket.onmessage = (event) => {
 
       // TODO - convert this to append rather than replace
-      const messages = [Message(JSON.parse(event.data))];
+      const newMessage = Message(JSON.parse(event.data));
+      const messages = this.state.messages.concat(newMessage)
       this.setState({ messages })
     }
 
@@ -59,8 +59,6 @@ class App extends Component {
   }
 
   sendMessage = (messageData) => {
-    // const newIM = Message(messageData);
-    // const messages = this.state.messages.concat(newIM);
     this.socket.send(JSON.stringify(messageData));
   }
 
