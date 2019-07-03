@@ -1,13 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Dependencies
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/* eslint-disable no-console */
 import React, { Component } from 'react';
 import MessageList          from './MessageList.jsx';
 import Navbar               from './Navbar.jsx';
 import Chatbar              from './Chatbar.jsx';
 import Message              from './Message.jsx';
-import messageData          from '../demoMessages.json'; // Demo Messages
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Helper Functions
@@ -34,19 +32,35 @@ class App extends Component {
     }
   }
 
+  sendMessage = (messageData) => {
+    this.socket.send(JSON.stringify(messageData));
+  }
+
+  nameChange = (newName) => {
+    const messageData = {
+      username: newName,
+      content: 'has entered the chat!',
+      type: 'system'
+    }
+    this.socket.send(JSON.stringify(messageData))
+  }
+
   componentDidMount() {
 
     this.socket = new WebSocket('ws://localhost:3001');
     this.socket.onopen = () => {
       console.log('Connection established to socket');
-      const demoMessage = { username:'Cpt. Falcon', content:'falconnnnnnn CHAT!', id: '1c7f2ba0-544c-4073-9cbb-5a6a1791acd6' }
+      const demoMessage = {
+        username:'',
+        content:'Welcome to Super CHAT Bros!',
+        type:'system',
+        id: '1c7f2ba0-544c-4073-9cbb-5a6a1791acd6'
+      }
       this.socket.send(JSON.stringify(demoMessage))
       this.setState({connected: true})
     }
 
     this.socket.onmessage = (event) => {
-
-      // TODO - convert this to append rather than replace
       const newMessage = Message(JSON.parse(event.data));
       const messages = this.state.messages.concat(newMessage)
       this.setState({ messages })
@@ -54,12 +68,9 @@ class App extends Component {
 
     this.socket.onerror = () => {
       console.warn('An error occurred connecting to the Websocket');
-      this.setState({loading: false, connected: false})
+      this.setState({connected: false})
     }
-  }
 
-  sendMessage = (messageData) => {
-    this.socket.send(JSON.stringify(messageData));
   }
 
   render() {
@@ -67,7 +78,7 @@ class App extends Component {
       <div>
         <Navbar />
         <MessageList messages={this.state.messages} connected={this.state.connected} />
-        <Chatbar currentUser={this.state.currentUser} sendMessage={this.sendMessage}/>
+        <Chatbar currentUser={this.state.currentUser} sendMessage={this.sendMessage} nameChange={this.nameChange}/>
       </div>
     );
   }

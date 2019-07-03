@@ -2,22 +2,21 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
 
-const characters = ['Mario', 'Luigi', 'Yoshi', 'Kirby', 'Fox', 'Link', 'Samus', 'Ness', 'Donkey Kong', 'Pikachu', 'Jigglypuff', 'Captain Falcon', ]
-
-function Options(charList){
-  const componentList = [];
-  charList.forEach(char => {
-    componentList.push(<option key={char} value={char}>{char}</option>)
-  })
-  return componentList;
-}
+import Options from './Options.jsx'
+///////////
+// Options
+///////////
 
 class Chatbar extends Component {
+
+  _handleChange = (e) => {
+    this.props.nameChange(e.target.value);
+  }
 
   _handleSubmit = (e) => {
     e.preventDefault();
     const { username, content } = e.target.elements;
-    const messageData = { username: username.value, content: content.value }
+    const messageData = { username: username.value, content: content.value, type:"chat-message" }
     this.props.sendMessage(messageData);
     e.target.elements.content.value = '';
   }
@@ -27,11 +26,10 @@ class Chatbar extends Component {
       <footer className="chatbar" >
         <form onSubmit={this._handleSubmit}>
           <fieldset >
-            <select name="username" id="character" className="chatbar-username">
-              {Options(characters)}
+            <select onChange={this._handleChange} name="username" id="character" className="chatbar-username">
+              {Options()}
             </select>
           </fieldset>
-
           <input name="content" className="chatbar-message" placeholder="Type a message and hit ENTER" />
           <button><FontAwesomeIcon icon={faComment} /></button>
         </form>

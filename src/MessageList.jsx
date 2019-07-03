@@ -1,23 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FontAwesomeIcon }  from '@fortawesome/react-fontawesome'
 import { faBroadcastTower }        from '@fortawesome/free-solid-svg-icons'
 
-class MessageList extends Component {
+module.exports = function MessageList(props){
+  const messages = (props.connected ? props.messages : <FontAwesomeIcon icon={faBroadcastTower}/>);
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    // Resolve loading time
-    const messages = (this.props.connected ? this.props.messages : <FontAwesomeIcon icon={faBroadcastTower}/>);
-    return (
-      <main className="messages">
-        {messages}
-      </main>
-    );
-  }
+  return (
+    <main className="messages">
+      {messages}
+    </main>
+  );
 }
-export default MessageList;
-
-
