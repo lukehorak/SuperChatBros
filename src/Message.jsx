@@ -12,13 +12,13 @@ module.exports = function Message(msgObj) {
   const { username, content, system } = msgObj;
   if(system){
     return(
-      <div className="message system" key={randomKeyGen()}>
+      <div className="message system" key={msgObj.id}>
         {username} {content}
       </div>
     )
   }
   return (
-    <div className="message" key={randomKeyGen()}>
+    <div className="message" key={msgObj.id}>
         <span className="message-username">{username}</span>
         <span className="message-content">{content}</span>
     </div>
