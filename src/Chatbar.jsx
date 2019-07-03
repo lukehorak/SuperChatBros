@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
-
 import Options from './Options.jsx'
-///////////
-// Options
-///////////
+
 
 class Chatbar extends Component {
 

@@ -8,16 +8,6 @@ import Chatbar              from './Chatbar.jsx';
 import Message              from './Message.jsx';
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Helper Functions
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-const getMessages = (msgList) => {
-  const messages = [];
-  msgList.forEach(messageObject => { messages.push(Message(messageObject)) })
-  return messages;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Component Class Definition
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 class App extends Component {
@@ -28,7 +18,7 @@ class App extends Component {
       currentUser: 'Lvl 1 CPU',
       loading: true,
       connected: true,
-      messages: []//getMessages(messageData)
+      messages: []
     }
   }
 
@@ -54,7 +44,7 @@ class App extends Component {
         username:'',
         content:'Welcome to Super CHAT Bros!',
         type:'system',
-        id: '1c7f2ba0-544c-4073-9cbb-5a6a1791acd6'
+        id: 'StartMessage'
       }
       this.socket.send(JSON.stringify(demoMessage))
       this.setState({connected: true})
