@@ -29,7 +29,7 @@ module.exports = function MessageComponent(msgObj) {
   }
   return (
     <div className={divClass} key={msgObj.id}>
-      <div>
+      <div className="user-and-content">
         <span className="message-username">{username}</span>
         <span className="message-content">{content}</span>
       </div>

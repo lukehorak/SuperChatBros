@@ -110,6 +110,11 @@ body {
   background: #eee;
 }
 
+.user-and-content{
+  display: flex;
+  flex-direction: row;
+}
+
 .message-content,
 .message-username {
   overflow: hidden;
