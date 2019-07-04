@@ -45,9 +45,7 @@ class App extends Component {
     this.socket.send(JSON.stringify(messageData));
   }
 
-  isMyMessage = (id) => {
-    return id === this.state.userID;
-  }
+  
 
   // nameChange = (newName) => {
   //   const messageData = {
@@ -63,7 +61,6 @@ class App extends Component {
     this.socket = new WebSocket('ws://localhost:3001');
     this.socket.onopen = () => {
       console.log('Connection established to socket');
-      // this.socket.send(JSON.stringify({type: "system-notification", content:  'A new challenger has appeared!'}))
       this.setState({connected: true})
       this.socket.send(JSON.stringify({type:"system", content:"user-change", username:this.state.currentUser}))
     }
@@ -72,9 +69,13 @@ class App extends Component {
       const messageObject = JSON.parse(event.data);
       // System Message indicating user count change
       if (messageObject.type === 'system'){
-        this.setState({userCount: messageObject.numUsers, userID: messageObject.ownerID})
+        this.setState({userCount: messageObject.numUsers})
+      }
+      else if(messageObject.type === 'set-id'){
+        this.setState({userID: messageObject.ownerID})
       }
       else{
+        messageObject.currentID = this.state.userID;
         const newMessage = MessageComponent(messageObject);
         const messages = this.state.messages.concat(newMessage)
         this.setState({ messages })
