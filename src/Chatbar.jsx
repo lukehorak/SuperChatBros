@@ -20,7 +20,6 @@ class Chatbar extends Component {
   }
   _handleName = (e) => {
     if (e.key === 'Enter'){
-      // const content = `${this.props.currentUser} has changed their name to ${e.target.value}`
       this.props.changeUser(this.props.currentUser, e.target.value)
     }
   }
