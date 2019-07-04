@@ -7,7 +7,7 @@ class Navbar extends Component {
       <nav className="navbar">
 
         <a href="/" className="navbar-brand"><img className="navbar-image" src="/styles/SuperChatBrosLogo.png"/></a>
-        <h3>Current Challengers: {this.props.userCount}</h3>
+        <h3>{this.props.userCount} Chat Bros online</h3>
       </nav>
     );
   }
