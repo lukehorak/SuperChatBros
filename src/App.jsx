@@ -17,22 +17,32 @@ class App extends Component {
     this.state = {
       currentUser: 'Lvl 1 CPU',
       connected: true,
-      messages: []
+      messages: [],
     }
+  }
+  
+  changeUser = (oldName, newName) => {
+    this.setState({ currentUser: newName });
+    const messageData = {
+          username: oldName,
+          content: `has changed their name to ${newName}`,
+          type: 'system'
+        }
+        this.socket.send(JSON.stringify(messageData))
   }
 
   sendMessage = (messageData) => {
     this.socket.send(JSON.stringify(messageData));
   }
 
-  nameChange = (newName) => {
-    const messageData = {
-      username: newName,
-      content: 'has entered the chat!',
-      type: 'system'
-    }
-    this.socket.send(JSON.stringify(messageData))
-  }
+  // nameChange = (newName) => {
+  //   const messageData = {
+  //     username: newName,
+  //     content: 'has entered the chat!',
+  //     type: 'system'
+  //   }
+  //   this.socket.send(JSON.stringify(messageData))
+  // }
 
   componentDidMount() {
 
@@ -40,7 +50,6 @@ class App extends Component {
     this.socket.onopen = () => {
       console.log('Connection established to socket');
       const demoMessage = {
-        username:'',
         content:'Welcome to Super CHAT Bros!',
         type:'system',
         id: 'StartMessage'
@@ -67,7 +76,7 @@ class App extends Component {
       <div>
         <Navbar />
         <MessageList messages={this.state.messages} connected={this.state.connected} />
-        <Chatbar currentUser={this.state.currentUser} sendMessage={this.sendMessage} nameChange={this.nameChange}/>
+        <Chatbar changeUser={this.changeUser} currentUser={this.state.currentUser} sendMessage={this.sendMessage} />
       </div>
     );
   }
