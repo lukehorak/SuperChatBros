@@ -88,8 +88,8 @@ body {
   border: 1px solid #aaa;
   margin: 0.2rem;
   border-radius: 5px;
-  min-width: 30%;
-  max-width: 45%;
+  min-width: 35%;
+  max-width: 40%;
 }
 .mine{
   align-self: flex-end;
@@ -104,10 +104,13 @@ body {
 }
 
 .message.system {
+  align-self: center;
+  width: 20%;
   font-style: italic;
   padding: 5px 20px;
   border: none;
   background: #eee;
+  text-align: center;
 }
 
 .user-and-content{
