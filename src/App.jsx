@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import MessageList          from './MessageList.jsx';
 import Navbar               from './Navbar.jsx';
 import Chatbar              from './Chatbar.jsx';
-import MessageComponent              from './MessageComponent.jsx';
+import MessageComponent     from './MessageComponent.jsx';
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Component Class Definition
@@ -44,17 +44,6 @@ class App extends Component {
   sendMessage = (messageData) => {
     this.socket.send(JSON.stringify(messageData));
   }
-
-  
-
-  // nameChange = (newName) => {
-  //   const messageData = {
-  //     username: newName,
-  //     content: 'has entered the chat!',
-  //     type: 'system'
-  //   }
-  //   this.socket.send(JSON.stringify(messageData))
-  // }
 
   componentDidMount() {
 

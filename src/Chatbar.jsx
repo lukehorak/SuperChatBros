@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
-import Options from './Options.jsx'
 
 
 class Chatbar extends Component {
-
-  // _handleChange = (e) => {
-  //   this.props.nameChange(e.target.value);
-  // }
 
   _handleSubmit = (e) => {
     e.preventDefault();
@@ -28,11 +23,6 @@ class Chatbar extends Component {
     return (
       <footer className="chatbar" >
         <input name="username" className="chatbar-username" defaultValue="Lvl 1 CPU" onKeyDown={this._handleName}/>
-          {/* <fieldset >
-            <select onChange={this._handleChange} name="username" id="character" className="chatbar-username">
-              {Options()}
-            </select>
-          </fieldset> */}
         <form onSubmit={this._handleSubmit}>
           
           <input name="content" className="chatbar-message" placeholder="Type a message and hit ENTER" />
